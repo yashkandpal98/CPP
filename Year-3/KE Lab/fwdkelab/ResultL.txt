@@ -1,0 +1,19 @@
+L1 : 
+1  Appears 15 times 
+2  Appears 21 times 
+3  Appears 19 times 
+4  Appears 11 times 
+5  Appears 19 times 
+6  Appears 18 times 
+7  Appears 17 times 
+L2: 
+1 2  Appears 8 times 
+1 5  Appears 8 times 
+2 3  Appears 11 times 
+2 5  Appears 11 times 
+2 6  Appears 9 times 
+2 7  Appears 9 times 
+3 5  Appears 11 times 
+6 7  Appears 9 times 
+L3: 
+2 3 5  Appears 8 times 

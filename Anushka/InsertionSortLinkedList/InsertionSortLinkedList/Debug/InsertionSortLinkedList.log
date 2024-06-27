@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\anushka\documents\visual studio 2017\projects\insertionsortlinkedlist\insertionsortlinkedlist\source.cpp(94): warning C4101: 'A': unreferenced local variable
+  InsertionSortLinkedList.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\InsertionSortLinkedList\Debug\InsertionSortLinkedList.exe
+  InsertionSortLinkedList.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\InsertionSortLinkedList\Debug\InsertionSortLinkedList.pdb (Partial PDB)

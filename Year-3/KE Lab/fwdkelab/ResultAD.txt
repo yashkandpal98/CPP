@@ -1,0 +1,15 @@
+1 =>2  Confidence : 0.533333
+1 =>5  Confidence : 0.533333
+3 =>2  Confidence : 0.578947
+2 =>3  Confidence : 0.52381
+5 =>2  Confidence : 0.578947
+2 =>5  Confidence : 0.52381
+6 =>2  Confidence : 0.5
+7 =>2  Confidence : 0.529412
+5 =>3  Confidence : 0.578947
+3 =>5  Confidence : 0.578947
+7 =>6  Confidence : 0.529412
+6 =>7  Confidence : 0.5
+3 5 =>2  Confidence : 0.727273
+2 5 =>3  Confidence : 0.727273
+2 3 =>5  Confidence : 0.727273

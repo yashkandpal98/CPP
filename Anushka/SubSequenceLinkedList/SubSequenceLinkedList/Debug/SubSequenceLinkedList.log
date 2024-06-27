@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\anushka\documents\visual studio 2017\projects\subsequencelinkedlist\subsequencelinkedlist\source.cpp(155): warning C4101: 'A': unreferenced local variable
+  SubSequenceLinkedList.vcxproj -> c:\users\anushka\documents\visual studio 2017\Projects\SubSequenceLinkedList\Debug\SubSequenceLinkedList.exe
+  SubSequenceLinkedList.vcxproj -> c:\users\anushka\documents\visual studio 2017\Projects\SubSequenceLinkedList\Debug\SubSequenceLinkedList.pdb (Partial PDB)

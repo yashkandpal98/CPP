@@ -1,0 +1,25 @@
+a.out
+catCommand.cpp
+cdCommand.cpp
+commandLine
+commandLine.cpp
+file2.txt
+kill
+killCommand.cpp
+newFile.txt
+psCommand.cpp
+pthread.cpp
+rmCommand.cpp
+threads.cpp
+wc
+wcCommand.cpp
+  PID TTY          TIME CMD
+ 3060 pts/2    00:00:00 bash
+ 3114 pts/2    00:00:00 commandLine
+ 3117 pts/2    00:00:00 commandLine
+ 3119 pts/2    00:00:00 ps
+Enter q for exit
+my_shell: Enter q for exit
+my_shell: Enter q for exit
+my_shell: SYSTEM : Shell is exiting
+

@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c:\users\anushka\documents\visual studio 2017\projects\linkedlist\linkedlist\source.cpp(195): warning C4101: 'm': unreferenced local variable
+c:\users\anushka\documents\visual studio 2017\projects\linkedlist\linkedlist\source.cpp(195): warning C4101: 'y': unreferenced local variable
+  LinkedList.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\LinkedList\Debug\LinkedList.exe
+  LinkedList.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\LinkedList\Debug\LinkedList.pdb (Partial PDB)

@@ -1,0 +1,359 @@
+#include<bits/stdc++.h>
+using namespace std;
+ofstream fout("resultLAP.txt");
+void GetSubsets(vector<int> Array,int k,set<int> Curset,vector<set<int> > &Res,int index)
+{
+	if(index>=Array.size()&&k==0)
+	{
+		Res.push_back(Curset);
+		return;
+	}
+	if(index>=Array.size()) return ;
+	GetSubsets(Array,k,Curset,Res,index+1);
+	Curset.insert(Array[index]);
+	GetSubsets(Array,k-1,Curset,Res,index+1);
+}
+bool hasInfrequentSubset(set<int> C, vector<set<int> > L,int k)
+{
+	vector<int> Temp;
+	set<int> :: iterator itr;
+	vector< set<int> > Ksub;
+	set<int> T;
+	for(itr=C.begin();itr!=C.end();itr++)
+	{
+		Temp.push_back(*itr);
+	}
+	GetSubsets(Temp,k-1,T,Ksub,0);
+	
+	cout<<"Subsets k-1 "<<k<<": \n";
+	for(int i=0;i<Ksub.size();i++)
+	{
+		for(itr=Ksub[i].begin();itr!=Ksub[i].end();itr++)
+		{
+			cout<<*itr<<" ";
+		}
+		cout<<endl;
+	}
+		
+	for(int i=0;i<Ksub.size();i++)
+	{
+		int ff=0;
+		for(int j=0;j<L.size();j++)
+		{
+			if(L[j]==Ksub[i]) 
+			{
+				ff=1;
+				break;	
+			}
+		}
+		if(ff==0)
+		return true;
+	}
+	return false;
+}
+int getCount(set<int> S)
+{
+	ifstream fin("Database2.txt");
+	set<int> Temp;
+	int count=0;
+	while(!fin.eof())
+	{
+		string t;
+		fin>>t;
+		//cout<<"T : "<<t<<endl;
+		if(t[0]=='E'||t=="T5") break;
+		if(t[0]=='T')
+		{
+			if(S.size()==Temp.size())
+			{
+				count++;
+			}
+			Temp.clear();
+		}
+		else
+		{
+			string y=t.substr(1);
+			int x=atoi(y.c_str());
+//			char c=t[1];
+//			int x=atoi(c);
+			if(S.find(x)!=S.end())
+			Temp.insert(x);
+		}
+	}
+	if(S.size()==Temp.size())
+		count++;
+	return count;
+}
+int getCount3(set<int> S)
+{
+	ifstream fin("Database2.txt");
+	set<int> Temp;
+	int count=0;
+	while(!fin.eof())
+	{
+		string t;
+		fin>>t;
+		//cout<<"T : "<<t<<endl;
+		if(t[0]=='E') break;
+		if(t[0]=='T')
+		{
+			if(S.size()==Temp.size())
+			{
+				count++;
+			}
+			Temp.clear();
+		}
+		else
+		{
+			string y=t.substr(1);
+			int x=atoi(y.c_str());
+//			char c=t[1];
+//			int x=atoi(c);
+			if(S.find(x)!=S.end())
+			Temp.insert(x);
+		}
+	}
+	if(S.size()==Temp.size())
+		count++;
+	return count;
+}
+int getCount2(set<int> S)
+{
+	ifstream fin("Database2.txt");
+	set<int> Temp;
+	int count=0;
+	while(1)
+	{
+		string t;
+		fin>>t;
+		if(t=="T5")
+		break;
+	}
+	while(!fin.eof())
+	{
+		string t;
+		fin>>t;
+		//cout<<"T : "<<t<<endl;
+		if(t[0]=='E'||t=="T5") 
+		break;
+		if(t[0]=='T')
+		{
+			if(S.size()==Temp.size())
+			{
+				count++;
+			}
+			Temp.clear();
+		}
+		else
+		{
+			string y=t.substr(1);
+			int x=atoi(y.c_str());
+//			char c=t[1];
+//			int x=atoi(c);
+			if(S.find(x)!=S.end())
+			Temp.insert(x);
+		}
+	}
+	if(S.size()==Temp.size())
+		count++;
+	return count;
+}
+vector< set<int> > GenerateApriori(int minsupcount, vector< set<int> > PrevL, int k)
+{
+	// Returns Ck given Lk-1
+	set<int> :: iterator itr,jtr;
+	vector< set<int> > Res;
+	for(int i=0;i<PrevL.size()-1;i++)
+	{
+		for(int j=i+1;j<PrevL.size();j++)
+		{
+			itr=PrevL[i].begin();
+			jtr=PrevL[j].begin();
+			int p=1;
+			int flag=0;
+			for(p=1;p<=k-2;p++)
+			{
+				if(*itr!=*jtr)
+				{
+					flag=1;
+					break;
+				}
+				itr++;
+				jtr++;
+			}
+			if(flag==0)
+			{
+				set<int> H;
+				itr=PrevL[i].begin();
+				jtr=PrevL[j].begin();
+				while(itr!=PrevL[i].end())
+				{
+					H.insert(*itr);
+					itr++;
+				}
+				while(jtr!=PrevL[j].end())
+				{
+					H.insert(*jtr);
+					jtr++;
+				}
+				if(!hasInfrequentSubset(H,PrevL,k))
+				{
+					//cout<<"There\n";
+					Res.push_back(H);
+				}
+			}
+		}
+	}
+	return Res;
+}
+int main()
+{
+	// Getting L1:
+	vector< set<int> > L1;
+	vector< set<int> > r1;
+	set<int> :: iterator itr;
+	int minsupcount=1;
+	for(int i=1;i<=5;i++)
+	{
+		set<int> Temp;
+		Temp.insert(i);
+		if(getCount(Temp)>=minsupcount)
+		{
+			L1.push_back(Temp);
+			r1.push_back(Temp);
+		}
+	}
+//	gout<<"C1: \n";
+//	for(int i=1;i<=5;i++)
+//	gout<<i<<endl;
+//	fout<<"L1 : \n";
+//	for(int i=0;i<L1.size();i++)
+//	{
+//		for(itr=L1[i].begin();itr!=L1[i].end();itr++)
+//		{
+//			fout<<*itr<<" ";
+//		}
+////		fout<<endl;
+//		fout<<" Appears "<<getCount(L1[i])<<" times "<<endl;
+//	}
+	for(int k=2;1;k++)
+	{
+		vector<set<int> > CK=GenerateApriori(minsupcount,L1,k);
+		vector<set<int> > CKF;
+		vector<set<int> > :: iterator it;
+		for(int i=0;i<CK.size();i++)
+		{
+			if(getCount(CK[i])>=minsupcount)
+			{
+				CKF.push_back(CK[i]);
+				r1.push_back(CK[i]);
+			}
+		}
+//		if(CK.size()!=0)
+//		gout<<"C"<<k<<": \n";
+//		for(int i=0;i<CK.size();i++)
+//		{
+//			for(itr=CK[i].begin();itr!=CK[i].end();itr++)
+//			{
+//				gout<<*itr<<" ";
+//			}
+//			gout<<endl;
+//		}
+//		if(CKF.size()!=0)
+//		fout<<"L"<<k<<": \n";
+//		for(int i=0;i<CKF.size();i++)
+//		{
+//			for(itr=CKF[i].begin();itr!=CKF[i].end();itr++)
+//			{
+//				fout<<*itr<<" ";
+//			}
+//			fout<<" Appears "<<getCount(CKF[i])<<" times "<<endl;
+//		}
+		if(CKF.size()==0)
+		break;
+		else
+		L1=CKF;
+	}
+//	for(int i=0;i<r1.size();i++)
+//	{
+//		for(itr=r1[i].begin();itr!=r1[i].end();itr++)
+//		{
+//			fout<<*itr<<" ";
+//		}
+//		fout<<" Appears "<<getCount(r1[i])<<" times "<<endl;
+//	}
+	L1.clear();
+	for(int i=1;i<=5;i++)
+	{
+		set<int> Temp;
+		Temp.insert(i);
+		if(getCount2(Temp)>=minsupcount)
+		{
+			L1.push_back(Temp);
+			r1.push_back(Temp);
+		}
+	}
+	for(int k=2;1;k++)
+	{
+		vector<set<int> > CK=GenerateApriori(minsupcount,L1,k);
+		vector<set<int> > CKF;
+		vector<set<int> > :: iterator it;
+		for(int i=0;i<CK.size();i++)
+		{
+			if(getCount2(CK[i])>=minsupcount)
+			{
+				CKF.push_back(CK[i]);
+				r1.push_back(CK[i]);
+			}
+		}
+//		if(CK.size()!=0)
+//		gout<<"C"<<k<<": \n";
+////		for(int i=0;i<CK.size();i++)
+//		{
+//			for(itr=CK[i].begin();itr!=CK[i].end();itr++)
+//			{
+//				gout<<*itr<<" ";
+//			}
+//			gout<<endl;
+//		}
+//		if(CKF.size()!=0)
+//		fout<<"L"<<k<<": \n";
+//		for(int i=0;i<CKF.size();i++)
+//		{
+//			for(itr=CKF[i].begin();itr!=CKF[i].end();itr++)
+//			{
+//				fout<<*itr<<" ";
+//			}
+//			fout<<" Appears "<<getCount(CKF[i])<<" times "<<endl;
+//		}
+		if(CKF.size()==0)
+		break;
+		else
+		L1=CKF;
+	}
+//	for(int i=0;i<r1.size();i++)
+//	{
+//		for(itr=r1[i].begin();itr!=r1[i].end();itr++)
+//		{
+//			fout<<*itr<<" ";
+//		}
+//		fout<<" Appears "<<getCount(r1[i])<<" times "<<endl;
+//	}
+	set< set<int> > s;
+	for(int i=0;i<r1.size();i++)
+	{
+		if(s.find(r1[i])==s.end())
+		{
+			if(getCount3(r1[i])>=2)
+			{
+				for(itr=r1[i].begin();itr!=r1[i].end();itr++)
+				{
+					fout<<*itr<<" ";
+				}
+				fout<<" Appears "<<getCount3(r1[i])<<" times "<<endl;
+			}
+		}
+		s.insert(r1[i]);
+	}
+	return 0;
+}

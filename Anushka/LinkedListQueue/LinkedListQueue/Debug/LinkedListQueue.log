@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c:\users\anushka\documents\visual studio 2017\projects\linkedlistqueue\linkedlistqueue\source.cpp(103): warning C4101: 'm': unreferenced local variable
+c:\users\anushka\documents\visual studio 2017\projects\linkedlistqueue\linkedlistqueue\source.cpp(103): warning C4101: 'y': unreferenced local variable
+  LinkedListQueue.vcxproj -> c:\users\anushka\documents\visual studio 2017\Projects\LinkedListQueue\Debug\LinkedListQueue.exe
+  LinkedListQueue.vcxproj -> c:\users\anushka\documents\visual studio 2017\Projects\LinkedListQueue\Debug\LinkedListQueue.pdb (Partial PDB)

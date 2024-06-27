@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c:\users\anushka\documents\visual studio 2017\projects\unionintersectionlinkedlists\unionintersectionlinkedlists\source.cpp(147): warning C4101: 'i': unreferenced local variable
+c:\users\anushka\documents\visual studio 2017\projects\unionintersectionlinkedlists\unionintersectionlinkedlists\source.cpp(146): warning C4101: 'x': unreferenced local variable
+  UnionIntersectionLinkedLists.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\UnionIntersectionLinkedLists\Debug\UnionIntersectionLinkedLists.exe
+  UnionIntersectionLinkedLists.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\UnionIntersectionLinkedLists\Debug\UnionIntersectionLinkedLists.pdb (Partial PDB)

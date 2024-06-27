@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\anushka\documents\visual studio 2017\projects\linkedlistproblem1\linkedlistproblem1\source.cpp(116): warning C4101: 'i': unreferenced local variable
+  LinkedListProblem1.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\LinkedListProblem1\Debug\LinkedListProblem1.exe
+  LinkedListProblem1.vcxproj -> C:\Users\Anushka\Documents\Visual Studio 2017\Projects\LinkedListProblem1\Debug\LinkedListProblem1.pdb (Partial PDB)

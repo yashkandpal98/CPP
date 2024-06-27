@@ -1,0 +1,172 @@
+#include<iostream>
+
+using namespace std;
+
+typedef struct dnode
+{
+	struct dnode* left;
+	int d;
+	struct dnode * right;
+}*dptr;
+
+class dll
+{
+private:
+	int s;
+public:
+	dptr D;
+
+	dll()
+	{
+		s = -1;
+		D = NULL;
+	}
+
+	void addbehind(int x)
+	{
+		dptr temp = new dnode;
+		temp->d = x;
+		temp->right = NULL;
+		temp->left = NULL;
+
+		if (D == NULL)
+		{
+			D = temp;
+		}
+		else
+		{
+			dptr p;
+			p = D;
+			while (p->right != NULL)
+			{
+				p = p->right;
+			}
+			p->right = temp;
+			temp->left = p;
+		}
+	}
+	void show()
+	{
+		dptr p;
+		p = D;
+		while (p != NULL)
+		{
+			cout << p->d << " ";
+			p = p->right;
+		}
+		cout << endl;
+
+	}
+	dptr search(int x, dptr p)
+	{
+		if (p == NULL)
+			return NULL;
+		else if (x == p->d)
+			return p;
+		else
+			return search(x, p->right);
+	}
+
+	void removemiddle(int x)
+	{
+
+		dptr rem = search(x, D);
+		if (rem == NULL)
+		{
+			cout << "Element not present to delete" << endl;
+			return;
+		}
+		if (rem->right == NULL && rem->left == NULL)
+		{
+			free(rem);
+			D = NULL;
+			return;
+		}
+		else if (rem->right == NULL)
+		{
+			rem->left->right = rem->right;
+			free(rem);
+			return;
+		}
+		else if (rem->left == NULL || rem == D)
+		{
+			rem->right->left = rem->left;
+			D = rem->right;
+			free(rem);
+			return;
+
+		}
+		rem->left->right = rem->right;
+		rem->right->left = rem->left;
+		rem->right = NULL;
+		rem->left = NULL;
+		free(rem);
+	}
+	void create(int n)
+	{
+		int i = 1;
+		dptr p = D;
+		while (i <= n)
+		{
+			dptr temp = new dnode;
+			temp->d = i;
+			temp->right = NULL;
+			temp->left = NULL;
+
+			if (D == NULL)
+			{
+				D = temp;
+				p = D;
+			}
+			else
+			{
+				p->right = temp;
+				temp->left = p;
+				p = temp;
+			}
+			i++;
+		}
+		p->right = D;
+		D->left = p;
+
+	}
+	dptr process(int k)
+	{
+		dptr p = D;
+		while (p->right != p && p->left !=p)
+		{
+			if (p->right == p && p->left == p)
+				return p;
+			else
+			{
+				int t = k;
+					while (t > 0)//skips and finds node to be executed
+					{
+						p = p->right;
+						t--;
+					}
+					cout << "Executing:" << p->d << endl;
+					p->left->right = p->right;
+					p->right->left = p->left;
+					p = p->right;
+			}
+		}
+	}
+
+};
+
+
+
+int main()
+{
+	dll o;
+	cout << "\tJOSEPHS PROBLEM" << endl;
+	int n, k;
+	cout << "No of people in the ring:"; cin >> n; cout << endl;
+	cout << "No of people to be skipped:"; cin >> k; cout << endl;
+	o.create(n);
+	dptr p=o.process(k);
+	cout << "Position that will be saved:" << p->d << endl;
+	return 0;
+
+}
